@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Resultados</h1>
+        <div id="resultado"></div>
+        <button onclick="showAnswerKey()">Gabarito</button>
+        <button onclick="restartQuiz()">Reiniciar</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Qual método é usado para transformar uma string em um número?",
+                options: ["parseInt()", "toString()", "Number()"],
+                answer: 0
+            },
+            {
+                question: "Qual símbolo é usado para declarar uma variável?",
+                options: ["$", "var", "let"],
+                answer: 1
+            },
+            {
+                question: "Qual operador é utilizado para comparar valores e tipos?",
+                options: ["==", "===", "!="],
+                answer: 1
+            },
+            {
+                question: "Qual função é usada para exibir dados no console?",
+                options: ["log()", "console.log()", "print()"],
+                answer: 1
+            },
+            {
+                question: "Qual método adiciona um elemento ao final de um array?",
+                options: ["push()", "add()", "append()"],
+                answer: 0
+            }
+        ];
+
+        const answers = JSON.parse(localStorage.getItem('answers'));
+        const resultadoContainer = document.getElementById('resultado');
+        let score = 0;
+
+        questions.forEach((question, index) => {
+            const userAnswer = answers[index];
+            if (userAnswer === question.answer) score++;
+        });
+
+        resultadoContainer.innerHTML = `<p>Você acertou: ${score} de ${questions.length}</p>`;
+
+        function showAnswerKey() {
+            window.location.href = 'gabarito.html';
+        }
+
+        function restartQuiz() {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

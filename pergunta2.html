@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pergunta 2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pergunta 2</h1>
+        <p>Qual símbolo é usado para declarar uma variável?</p>
+        <div id="opcoes"></div>
+        <button onclick="nextQuestion()">Próxima</button>
+    </div>
+
+    <script>
+        const options = ["$", "var", "let"];
+        const answer = 1;
+
+        loadOptions();
+
+        function loadOptions() {
+            const optionsContainer = document.getElementById('opcoes');
+            options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectAnswer(selectedIndex) {
+            const answers = JSON.parse(localStorage.getItem('answers'));
+            answers.push(selectedIndex);
+            localStorage.setItem('answers', JSON.stringify(answers));
+            nextQuestion();
+        }
+
+        function nextQuestion() {
+            window.location.href = 'pergunta3.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pergunta 5</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pergunta 5</h1>
+        <p>Qual método adiciona um elemento ao final de um array?</p>
+        <div id="opcoes"></div>
+    </div>
+
+    <script>
+        const options = ["push()", "add()", "append()"];
+        const answer = 0;
+
+        loadOptions();
+
+        function loadOptions() {
+            const optionsContainer = document.getElementById('opcoes');
+            options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectAnswer(selectedIndex) {
+            const answers = JSON.parse(localStorage.getItem('answers'));
+            answers.push(selectedIndex);
+            localStorage.setItem('answers', JSON.stringify(answers));
+            finishQuiz();  // Redireciona para a página de resultados
+        }
+
+        function finishQuiz() {
+            window.location.href = 'resultado.html';
+        }
+    </script>
+</body>
+</html>

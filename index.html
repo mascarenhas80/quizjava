@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz JavaScript</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz JavaScript</h1>
+        <button onclick="startQuiz()">Iniciar Quiz</button>
+    </div>
+
+    <script>
+        function startQuiz() {
+            localStorage.setItem('answers', JSON.stringify([]));
+            window.location.href = 'pergunta.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarito</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gabarito</h1>
+        <div id="gabarito"></div>
+        <button onclick="restartQuiz()">Reiniciar</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Qual método é usado para transformar uma string em um número?",
+                options: ["parseInt()", "toString()", "Number()"],
+                answer: 0
+            },
+            {
+                question: "Qual símbolo é usado para declarar uma variável?",
+                options: ["$", "var", "let"],
+                answer: 1
+            },
+            {
+                question: "Qual operador é utilizado para comparar valores e tipos?",
+                options: ["==", "===", "!="],
+                answer: 1
+            },
+            {
+                question: "Qual função é usada para exibir dados no console?",
+                options: ["log()", "console.log()", "print()"],
+                answer: 1
+            },
+            {
+                question: "Qual método adiciona um elemento ao final de um array?",
+                options: ["push()", "add()", "append()"],
+                answer: 0
+            }
+        ];
+
+        const answers = JSON.parse(localStorage.getItem('answers'));
+        const gabaritoContainer = document.getElementById('gabarito');
+
+        questions.forEach((question, index) => {
+            const userAnswer = answers[index];
+
+            const questionResult = document.createElement('div');
+            questionResult.innerHTML = `<strong>${question.question}</strong><br>`;
+            question.options.forEach((option, i) => {
+                const optionSpan = document.createElement('span');
+                optionSpan.innerText = option;
+                
+                // Marcar as respostas
+                if (i === question.answer) {
+                    optionSpan.style.color = 'green'; // Resposta correta
+                } else if (i === userAnswer) {
+                    optionSpan.style.color = 'red'; // Resposta errada
+                }
+                questionResult.appendChild(optionSpan);
+                questionResult.appendChild(document.createElement('br'));
+            });
+
+            gabaritoContainer.appendChild(questionResult);
+        });
+
+        function restartQuiz() {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
